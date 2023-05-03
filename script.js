@@ -1,13 +1,15 @@
 const container = document.querySelector("#container");
 for(let i = 0; i < 16; i++){
-//creates 16 flex rows called div
-let div = document.createElement("div");
+let row = document.createElement("div");
+row.classList.add("row");
+//creates 16 flex rows 
 for(let i = 0; i < 16; i++){
 //creates 16 squares and appends them all to the above row
-let square = document.createElement("div");
+let square = document.createElement("square");
 square.classList.add("square");
-div.appendChild(square);
+row.appendChild(square);
 }
 //attaches the row to the container 
-container.appendChild(div);
+container.appendChild(row);
+
 }
