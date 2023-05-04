@@ -11,5 +11,13 @@ row.appendChild(square);
 }
 //attaches the row to the container 
 container.appendChild(row);
-
 }
+
+//function to change color of square
+function hoverEffect(e){
+this.style.backgroundColor = 'yellow';
+}
+const keys = document.querySelectorAll('.square');
+keys.forEach(key => key.addEventListener('mouseover', hoverEffect));
+window.addEventListener('keydown', playSound);
+
