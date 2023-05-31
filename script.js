@@ -24,11 +24,20 @@ function createGrid(x = 16){
     }
     }
 
+    
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
 createGrid();
 function hoverEffect(e){
-    this.style.backgroundColor = 'yellow';
+    this.style.backgroundColor = getRandomColor();
     }
-    
+   
     
 function gridSize(){
     container.innerHTML = '';
