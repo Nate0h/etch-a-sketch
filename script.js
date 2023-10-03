@@ -1,59 +1,57 @@
-/*const butt = document.createElement("button");
-butt.textContent = "Click Me";
-document.body.appendChild(butt);
+let color = "black";
+let click = true;
+function populateBoard(size){
+let board = document.querySelector(".board");
+let squares = board.querySelectorAll("div");
+squares.forEach((div) => div.remove());
+board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-butt.addEventListener('click', gridSize);*/
+let amount = size * size;
+for(let i = 0; i < amount; i++){
+  let square = document.createElement("div");
+  square.addEventListener("mouseover",colorSquare);
+  square.style.backgroundColor = "white";
+  board.insertAdjacentElement("beforeend", square);
+}
 
-const butt = document.querySelector("button");
-butt.addEventListener("click", gridSize);
+}
 
-const container = document.querySelector("#container");
-function createGrid(x = 16){
-    for(let i = 0; i < x; i++){
-    let row = document.createElement("div");
-    row.classList.add("row");
-    //creates 16 flex rows 
-    for(let i = 0; i < x; i++){
-    //creates 16 squares and appends them all to the above row
-    let square = document.createElement("square");
-    square.classList.add("square");
-    row.appendChild(square);
+function changeSize(input){
+  populateBoard(input);
+}
+
+function colorSquare(){
+  if(click){
+  if(color == 'random'){
+    this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  }
+  else{
+    this.style.backgroundColor = color;
+  }
+}
+
+}
+
+function changeColor(choice){
+  color = choice;
+}
+
+function resetBoard(){
+  let board = document.querySelector(".board");
+  let squares = board.querySelectorAll("div");
+  squares.forEach((div) => div.style.backgroundColor = "white");
+}
+
+document.querySelector("body").addEventListener("click",(e) =>{
+  if(e.target.tagName != "BUTTON" ){
+    click = !click;
+    if (click){
+      document.querySelector(".mode").textContent = "Mode: Coloring";
     }
-    //attaches the row to the container 
-    container.appendChild(row);
+    else{
+      document.querySelector(".mode").textContent = "Mode: Not Coloring";
     }
-    }
-
-    
-    function getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-      }
-createGrid();
-function hoverEffect(e){
-    this.style.backgroundColor = getRandomColor();
-    }
-   
-    
-function gridSize(){
-    container.innerHTML = '';
-    let num = prompt("What square dimension do you want to grid to be?");
-     num = parseInt(num);
-    while(num > 100 ){
-    num = prompt("What square dimension do you want to grid to be?");
-    num = parseInt(num);
-    }
-    createGrid(num);
-    const keys = document.querySelectorAll('.square');
-    keys.forEach(key => key.addEventListener('mouseover', hoverEffect));
-    }
-
-
-    const keys = document.querySelectorAll('.square');
-    keys.forEach(key => key.addEventListener('mouseover', hoverEffect));
-
-
+  }
+});
+populateBoard(32);

@@ -10,8 +10,25 @@
 
 </head>
 <body>
-    <button> Click Me</button>
-    <div id ="container"> </div>
+    <div class="flex-container">
+        <div class="title"><h1>Sketch Pad</h1></div>
+        <div class="mode">Mode: Coloring</div>
+        <div class="content">
+            <div class="board"></div>
+            <div class="buttons">
+                <button class="blackButton" onclick="changeColor('black')">Black</button>
+                <button class="grayButton" onclick="changeColor('gray')">GrayScale</button>
+                <button class="eraserButton" onclick="changeColor('white')">Eraser</button>
+                <button class="randomButton" onclick="changeColor('random')">Random</button>
+                <button onclick="resetBoard()">Reset</button>
+            </div>
+
+            <div>
+                <input type="number" placeholder = "Size of Board between 2 & 100" value = "16" min = "2" max = "100" onchange = "changeSize(this.value)">
+                <button>Set Size</button>
+            </div>
+        </div>
+    </div>
     
 </body>
 </html>
